@@ -1,5 +1,5 @@
-interface Produto{
+interface Produto {
     val codigo: Int
-    val quantidade: Int
+    var quantidade: Int
     val preco: Double
 }
