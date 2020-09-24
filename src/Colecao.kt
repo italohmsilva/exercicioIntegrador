@@ -1,7 +1,7 @@
 data class Colecao(
         override var codigo: Int,
-        override val quantidade: Int,
+        override var quantidade: Int,
         override var preco: Double,
-        var listaLivros: mutableOf<Livro>,
+        var listaLivros: MutableList<Livro>,
         var descricao: String
 ): Produto
