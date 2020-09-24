@@ -1,5 +1,5 @@
 interface Produto {
     var codigo: Int
-    val quantidade: Int
+    var quantidade: Int
     var preco: Double
 }

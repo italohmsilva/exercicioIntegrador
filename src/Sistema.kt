@@ -1,18 +1,54 @@
 class Sistema() {
-    val estoqueLivros = mutableListOf<Livros>(livro1(codigo=12,titulo="O pequeno Principe",autor="Joao Felipe",anoLancamento="1981",quantidade=120,preco=20.00),
-            livro2(codigo=14,titulo="O pequeno Polegar",autor="Joao Pedro",anoLancamento="1991",quantidade=150,preco=25.00))
-    val estoqueColecao = mutableListOf<Colecao>(colecao1(codigo=100,descricao="Aventura",quantidade=150,preco=25.00))
+    val l1 = Livro("O pequeno Principe", "Joao Felipe", "1981", 12, 120, 20.00)
+    val l2 = Livro("O pequeno Polegar", "Joao Pedro", "1991", 45, 150, 25.00)
 
-    fun cadastrarLivro(livro:Livro) {
-        estoqueLivros.add(livro)
+    val c1 = Colecao(14, 21, 250.69, mutableListOf<Livro>(l1, l2), "livros aventura")
+    val c2 = Colecao(15, 24, 250.69, mutableListOf<Livro>(l1, l2), "livros aventura")
+
+    val estoque = mutableListOf(c1, c2, l1, l2)
+
+    fun cadastrarProduto(produto: Produto) {
+        estoque.add(produto)
     }
-    fun cadastrarColecao(colecao:Colecao){
-        estoqueColecao.add(colecao)
+
+
+    fun consultarProduto(codigo: Int) {
+
+
+        var produtoEncontrado = false
+        estoque.forEach {
+            if (it.codigo == codigo) {
+                produtoEncontrado = true
+                println(it)
+
+            }
+        }
+        if (!produtoEncontrado) {
+            println("Produto não encontrado!")
+        }
     }
-    fun consultarLivro(codigo:Int): Livro {
-        try{
-            estoqueLivros.forEach{ return it if (it.codigo == codigo)}
+
+    fun venda(codigo: Int) {
+        var produtoEstoque = false
+        estoque.forEach {
+            if (it.codigo == codigo) {
+                if (it.quantidade > 0) {
+                    it.quantidade--
+                    produtoEstoque = true
+                    println("Venda efetuada")
+                } else {
+                    estoque.remove(it)
+                    println("Produto Esgotado")
+
+                }
+            }
+        }
+        if (estoque.isEmpty()) {
+            println("Estoque esgotado")
         }
     }
 
 }
+
+
+
